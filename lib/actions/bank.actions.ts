@@ -101,6 +101,8 @@ export const getAccount = async ({ appwriteItemId }: getAccountProps) => {
       accessToken: bank?.accessToken,
     });
 
+    console.log(transactions)
+
     const account = {
       id: accountData.account_id,
       availableBalance: accountData.balances.available!,
@@ -115,7 +117,7 @@ export const getAccount = async ({ appwriteItemId }: getAccountProps) => {
     };
 
     // sort transactions by date such that the most recent transaction is first
-      const allTransactions = [...transactions, ...transferTransactions].sort(
+    const allTransactions = [...transactions, ...transferTransactions].sort(
       (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
     );
 
@@ -162,7 +164,8 @@ export const getTransactions = async ({
 
       const data = response.data;
 
-      transactions = response.data.added.map((transaction) => ({
+      transactions = response.data.added.map((transaction) => (console.log('AAAAAAAAAAAAAAAAAA  ', transaction), {
+
         id: transaction.transaction_id,
         name: transaction.name,
         paymentChannel: transaction.payment_channel,
