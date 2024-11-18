@@ -163,6 +163,7 @@ export const getTransactions = async ({
       });
 
       const data = response.data;
+      console.log()
 
       transactions = response.data.added.map((transaction) => (console.log('AAAAAAAAAAAAAAAAAA  ', transaction), {
 
